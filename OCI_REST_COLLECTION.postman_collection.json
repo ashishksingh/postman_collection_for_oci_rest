@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "4c6f5027-84d4-4d49-913e-81837be82ad9",
+		"name": "OCI_REST_COLLECTION",
+		"description": "This is a sample collection for invoking OCI REST APIs via POSTMAN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET_OCI_ANNOUNCEMENTS",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "61a763d1-23ba-49b6-a36f-7b2f3a8d0ad0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8531ceab-bb89-4758-aef3-9abfc8c89cf4",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					},
+					{
+						"key": "Date",
+						"value": "{{date}}",
+						"type": "text"
+					},
+					{
+						"key": "(request-target)",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://announcements.us-ashburn-1.oraclecloud.com/20180904/announcements?compartmentId=ocid1.tenancy.oc1..........",
+					"protocol": "https",
+					"host": [
+						"announcements",
+						"us-ashburn-1",
+						"oraclecloud",
+						"com"
+					],
+					"path": [
+						"20180904",
+						"announcements"
+					],
+					"query": [
+						{
+							"key": "compartmentId",
+							"value": "ocid1.tenancy.oc1.........."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE_OCI_STREAMS",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "91a5ac01-2142-4b2f-b7d9-86937591601c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"name": "Content-Type",
+						"value": "{{authorization}}",
+						"type": "text"
+					},
+					{
+						"key": "Date",
+						"value": "{{date}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-content-sha256",
+						"value": "{{content_sha256}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"compartmentId\"    :\"ocid1.compartment.oc1..aaaaaaaao74xptt2gjjxfce4bcxrxlpq63cwhel7l6caymou6cyvug7hhfsa\",\r\n  \"name\"    :\"mynewstream\",   \r\n  \"partitions\"  :  \"1\"   \r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://streams.us-ashburn-1.streaming.oci.oraclecloud.com/20180418/streams",
+					"protocol": "https",
+					"host": [
+						"streams",
+						"us-ashburn-1",
+						"streaming",
+						"oci",
+						"oraclecloud",
+						"com"
+					],
+					"path": [
+						"20180418",
+						"streams"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "46d59ee2-df8d-462f-9228-b8019f46c6c4",
+				"type": "text/javascript",
+				"exec": [
+					"var navigator = {};",
+					"var window = {};",
+					"eval(pm.globals.get(\"jsrsasign\"));",
+					"",
+					"var headersToSign = [",
+					"        \"(request-target)\",",
+					"        \"date\",",
+					"        \"host\"",
+					"    ];",
+					"",
+					"",
+					"var curr_date = new Date().toUTCString() ;",
+					"pm.environment.set(\"date\",curr_date);",
+					"var host = pm.request.url.host.join(\".\") ;",
+					"var apiKeyId = pm.environment.get(\"tenancyId\") + \"/\" + pm.environment.get(\"authUserId\") +\"/\"+ pm.environment.get(\"keyFingerprint\");",
+					"var privateKey_var =  pm.environment.get(\"privateKey\");",
+					"",
+					"var date_header = \"date: \"+ curr_date ;",
+					"var escapedTarget = encodeURI(request.url.split(pm.request.url.host.join(\".\"))[1]);",
+					"var request_target_header = \"(request-target): \"+ request.method.toLowerCase() + \" \" + escapedTarget;",
+					"var host_header = \"host: \" + host ;",
+					"",
+					"",
+					"var signing_string_array = [ ",
+					"                request_target_header,",
+					"                date_header,",
+					"                host_header];",
+					"",
+					"var methodsThatRequireExtraHeaders = [\"POST\", \"PUT\"];",
+					"var body = \"\";",
+					"",
+					"if(methodsThatRequireExtraHeaders.indexOf(request.method.toUpperCase()) !== -1) {",
+					"    body = pm.request.body.raw;",
+					"    ",
+					"    //pm.environment.set(\"length\", body.length);",
+					"    ",
+					"    var content_length_header = \"content-length: \"+ body.length ; ",
+					"    var content_type_header = \"content-type: application/json\";",
+					"    ",
+					" ",
+					"    ",
+					"    var body_hash = new KJUR.crypto.MessageDigest({\"alg\": \"sha256\", \"prov\": \"cryptojs\"});",
+					"    body_hash.updateString(body);",
+					"    var bHashVal = body_hash.digest();",
+					"    var base64_encoded_body_hash = Buffer.from(bHashVal, 'hex').toString('base64');",
+					"    ",
+					"    var x_content_sha256_header = \"x-content-sha256: \" + base64_encoded_body_hash ; ",
+					"    ",
+					"    pm.environment.set(\"content_sha256\",base64_encoded_body_hash); ",
+					"    ",
+					"    signing_string_array = signing_string_array.concat([",
+					"        x_content_sha256_header,",
+					"        content_type_header,",
+					"        content_length_header ",
+					"         ",
+					"        ]);",
+					"",
+					"    headersToSign = headersToSign.concat([",
+					"        \"x-content-sha256\",",
+					"        \"content-type\",",
+					"        \"content-length\"",
+					"        ",
+					"        ",
+					"    ]);",
+					"    ",
+					"}",
+					"",
+					"",
+					"",
+					"var headers=headersToSign.join(\" \"); ",
+					"//console.log(headers);",
+					"",
+					"",
+					"var signing_string =signing_string_array.join(\"\\n\");",
+					"//console.log(signing_string);",
+					"",
+					"var sig = new KJUR.crypto.Signature({\"alg\": \"SHA256withRSA\"});",
+					"sig.init(privateKey_var);",
+					"sig.updateString(signing_string);",
+					"var hSigVal = sig.sign();",
+					"var base64_encoded_signature = Buffer.from(hSigVal, 'hex').toString('base64');",
+					"",
+					"",
+					"//var auth_string = 'Signature version=\"1\",headers=\"'+headers + '\",keyId=\"'+apiKeyId +'\",algorithm=\"rsa-sha256\",signature=\"' + base64_encoded_signature+ '\"' ;",
+					"var auth_string = 'Signature version=\"1\",keyId=\"'+apiKeyId  +'\",algorithm=\"rsa-sha256\",headers=\"'+headers+ '\",signature=\"' + base64_encoded_signature+ '\"' ;",
+					"pm.environment.set(\"authorization\", auth_string);",
+					"",
+					"//console.log(auth_string);",
+					"",
+					"",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "74e19816-aed7-464b-bc62-944768888151",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

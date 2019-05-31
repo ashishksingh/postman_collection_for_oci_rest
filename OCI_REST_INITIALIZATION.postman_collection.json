@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "bc9e280e-a5f2-4d66-b1ea-9f0088677774",
+		"name": "OCI_REST_INITIALIZATION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ONE_TIME_INITIALIZATION_CALL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b29a4323-39a5-4785-80ef-c95f0d9c8bf4",
+						"exec": [
+							"pm.globals.set(\"jsrsasign\", responseBody);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/8.0.12/jsrsasign-all-min.js",
+					"protocol": "https",
+					"host": [
+						"cdnjs",
+						"cloudflare",
+						"com"
+					],
+					"path": [
+						"ajax",
+						"libs",
+						"jsrsasign",
+						"8.0.12",
+						"jsrsasign-all-min.js"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
