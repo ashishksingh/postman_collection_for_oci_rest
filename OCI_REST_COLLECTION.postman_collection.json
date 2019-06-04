@@ -161,7 +161,7 @@
 					"pm.environment.set(\"date\",curr_date);",
 					"var host = pm.request.url.host.join(\".\") ;",
 					"var apiKeyId = pm.environment.get(\"tenancyId\") + \"/\" + pm.environment.get(\"authUserId\") +\"/\"+ pm.environment.get(\"keyFingerprint\");",
-					"var privateKey_var =  pm.environment.get(\"privateKey\");",
+					"var privateKey_var =  pm.environment.get(\"privateKey\").trim();",
 					"",
 					"var date_header = \"date: \"+ curr_date ;",
 					"var escapedTarget = encodeURI(request.url.split(pm.request.url.host.join(\".\"))[1]);",
