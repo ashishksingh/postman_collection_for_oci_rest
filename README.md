@@ -1,5 +1,7 @@
-# POSTMAN COLLECTION FOR OCI REST
+# POSTMAN COLLECTION FOR INVOKING Oracle OCI REST APIs
 Associated blog post : https://link.medium.com/sCcFWZU68W and http://www.ateam-oracle.com/invoking-oci-rest-apis-using-postman 
+
+Youtube : https://www.youtube.com/watch?v=8x1-3-k0poM
 
 Download the repository's Postman collections and environment.
 
