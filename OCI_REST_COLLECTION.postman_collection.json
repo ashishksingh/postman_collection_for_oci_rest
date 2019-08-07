@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4c6f5027-84d4-4d49-913e-81837be82ad9",
+		"_postman_id": "1cc7924d-1e60-4906-b41d-c2b912b8b9fa",
 		"name": "OCI_REST_COLLECTION",
 		"description": "This is a sample collection for invoking OCI REST APIs via POSTMAN",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -35,24 +35,7 @@
 					"type": "noauth"
 				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{authorization}}",
-						"type": "text"
-					},
-					{
-						"key": "Date",
-						"value": "{{date}}",
-						"type": "text"
-					},
-					{
-						"key": "(request-target)",
-						"value": "",
-						"type": "text",
-						"disabled": true
-					}
-				],
+				"header": [],
 				"url": {
 					"raw": "https://announcements.us-ashburn-1.oraclecloud.com/20180904/announcements?compartmentId=ocid1.tenancy.oc1..........",
 					"protocol": "https",
@@ -92,29 +75,7 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"name": "Content-Type",
-						"value": "{{authorization}}",
-						"type": "text"
-					},
-					{
-						"key": "Date",
-						"value": "{{date}}",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "x-content-sha256",
-						"value": "{{content_sha256}}",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"compartmentId\"    :\"ocid1.compartment.oc1..aaaaaaaao74xptt2gjjxfce4bcxrxlpq63cwhel7l6caymou6cyvug7hhfsa\",\r\n  \"name\"    :\"mynewstream\",   \r\n  \"partitions\"  :  \"1\"   \r\n}\r\n"
@@ -158,7 +119,7 @@
 					"",
 					"",
 					"var curr_date = new Date().toUTCString() ;",
-					"pm.environment.set(\"date\",curr_date);",
+					"pm.request.headers.upsert({key:'Date',value:curr_date});",
 					"var host = pm.request.url.host.join(\".\") ;",
 					"var apiKeyId = pm.environment.get(\"tenancyId\") + \"/\" + pm.environment.get(\"authUserId\") +\"/\"+ pm.environment.get(\"keyFingerprint\");",
 					"var privateKey_var =  pm.environment.get(\"privateKey\").trim();",
@@ -174,7 +135,7 @@
 					"                date_header,",
 					"                host_header];",
 					"",
-					"var methodsThatRequireExtraHeaders = [\"POST\", \"PUT\"];",
+					"var methodsThatRequireExtraHeaders = [\"POST\", \"PUT\", \"PATCH\"];",
 					"var body = \"\";",
 					"",
 					"if(methodsThatRequireExtraHeaders.indexOf(request.method.toUpperCase()) !== -1) {",
@@ -194,7 +155,8 @@
 					"    ",
 					"    var x_content_sha256_header = \"x-content-sha256: \" + base64_encoded_body_hash ; ",
 					"    ",
-					"    pm.environment.set(\"content_sha256\",base64_encoded_body_hash); ",
+					"\tpm.request.headers.upsert({key:'x-content-sha256',value:base64_encoded_body_hash});",
+					"\tpm.request.headers.upsert({key:'Content-Type',value:'application/json'});",
 					"    ",
 					"    signing_string_array = signing_string_array.concat([",
 					"        x_content_sha256_header,",
@@ -231,7 +193,7 @@
 					"",
 					"//var auth_string = 'Signature version=\"1\",headers=\"'+headers + '\",keyId=\"'+apiKeyId +'\",algorithm=\"rsa-sha256\",signature=\"' + base64_encoded_signature+ '\"' ;",
 					"var auth_string = 'Signature version=\"1\",keyId=\"'+apiKeyId  +'\",algorithm=\"rsa-sha256\",headers=\"'+headers+ '\",signature=\"' + base64_encoded_signature+ '\"' ;",
-					"pm.environment.set(\"authorization\", auth_string);",
+					"pm.request.headers.upsert({key:'Authorization',value:auth_string});",
 					"",
 					"//console.log(auth_string);",
 					"",
