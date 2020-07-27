@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1cc7924d-1e60-4906-b41d-c2b912b8b9fa",
+		"_postman_id": "7ac57e8f-79ec-46f5-a3a7-159dd6a7dcee",
 		"name": "OCI_REST_COLLECTION",
 		"description": "This is a sample collection for invoking OCI REST APIs via POSTMAN",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -12,7 +12,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "61a763d1-23ba-49b6-a36f-7b2f3a8d0ad0",
+						"id": "2a865605-a332-47c3-9179-5d006ec2d152",
 						"exec": [
 							""
 						],
@@ -22,7 +22,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8531ceab-bb89-4758-aef3-9abfc8c89cf4",
+						"id": "124cc4c1-6403-41be-b3c5-6cea49468b7c",
 						"exec": [
 							""
 						],
@@ -65,7 +65,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "91a5ac01-2142-4b2f-b7d9-86937591601c",
+						"id": "2dabd1a5-cd68-43ff-8707-4432056db82c",
 						"exec": [
 							""
 						],
@@ -104,7 +104,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "46d59ee2-df8d-462f-9228-b8019f46c6c4",
+				"id": "f6f7310a-d0de-4786-b705-5e0c6b778b56",
 				"type": "text/javascript",
 				"exec": [
 					"var navigator = {};",
@@ -185,11 +185,11 @@
 					"//console.log(signing_string);",
 					"",
 					"var sig = new KJUR.crypto.Signature({\"alg\": \"SHA256withRSA\"});",
-					"var passphrase_var = pm.environment.get(\"passphrase\");",
+					"var passphrase_var =  pm.environment.get(\"passphrase\");",
 					"if(passphrase_var) {",
-					"       sig.init(privateKey_var,passphrase_var);",
-					"} else {",
-					"	sig.init(privateKey_var);",
+					"    sig.init(privateKey_var,passphrase_var);",
+					"}else{",
+					"    sig.init(privateKey_var);",
 					"}",
 					"sig.updateString(signing_string);",
 					"var hSigVal = sig.sign();",
@@ -211,12 +211,13 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "74e19816-aed7-464b-bc62-944768888151",
+				"id": "cd0223fc-b9de-4b86-bea1-2fe787fa169b",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
