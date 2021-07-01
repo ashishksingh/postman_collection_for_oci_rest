@@ -120,12 +120,16 @@
 					"",
 					"var curr_date = new Date().toUTCString() ;",
 					"pm.request.headers.upsert({key:'Date',value:curr_date});",
-					"var host = pm.request.url.host.join(\".\") ;",
+					"let sdk = require('postman-collection'),"
+					"newRequest = new sdk.Request(pm.request.toJSON()),"
+					"resolvedRequest = newRequest.toObjectResolved(null, [pm.variables.toObject()], { ignoreOwnVariables: true });"
+					"resolvedUrl = new sdk.Url(resolvedRequest.url)"
+					"var host = url.parse(resolvedUrl.toString()).hostname;"
 					"var apiKeyId = pm.environment.get(\"tenancyId\") + \"/\" + pm.environment.get(\"authUserId\") +\"/\"+ pm.environment.get(\"keyFingerprint\");",
 					"var privateKey_var =  pm.environment.get(\"privateKey\").trim();",
 					"",
 					"var date_header = \"date: \"+ curr_date ;",
-					"var escapedTarget = encodeURI(request.url.split(pm.request.url.host.join(\".\"))[1]);",
+					"var escapedTarget = encodeURI(resolvedUrl.toString().split(host)[1]);"
 					"var request_target_header = \"(request-target): \"+ request.method.toLowerCase() + \" \" + escapedTarget;",
 					"var host_header = \"host: \" + host ;",
 					"",
