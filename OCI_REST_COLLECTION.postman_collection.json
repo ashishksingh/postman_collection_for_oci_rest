@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7ac57e8f-79ec-46f5-a3a7-159dd6a7dcee",
+		"_postman_id": "4f2b5b02-4500-4c63-8a33-6c1cb72649f0",
 		"name": "OCI_REST_COLLECTION",
 		"description": "This is a sample collection for invoking OCI REST APIs via POSTMAN",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -12,7 +12,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "2a865605-a332-47c3-9179-5d006ec2d152",
 						"exec": [
 							""
 						],
@@ -22,7 +21,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "124cc4c1-6403-41be-b3c5-6cea49468b7c",
 						"exec": [
 							""
 						],
@@ -65,7 +63,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "2dabd1a5-cd68-43ff-8707-4432056db82c",
 						"exec": [
 							""
 						],
@@ -98,13 +95,265 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Detect Language",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "compartmentId",
+						"value": "ocid1.tenancy.oc1..aaaaaaaai44wbzfop4iphxiaukbtciatettbj3imuwufiteetqg3ojicprvq",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\" : \"El 12 de octubre es el día de la Hispanidad que celebra el descubrimiento de América en 1492. Este día coincide con la fiesta de la Virgen María del Pilar, que es el patrona de España. Actualmente, la Hispanidad se celebra dentro y fuera de España, aunque es una de las fiestas que más polémica generan.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://language.aiservice.us-ashburn-1.oci.oraclecloud.com/20210101/actions/detectDominantLanguage",
+					"protocol": "https",
+					"host": [
+						"language",
+						"aiservice",
+						"us-ashburn-1",
+						"oci",
+						"oraclecloud",
+						"com"
+					],
+					"path": [
+						"20210101",
+						"actions",
+						"detectDominantLanguage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detect Language Entities",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "compartmentId",
+						"value": "ocid1.tenancy.oc1..aaaaaaaai44wbzfop4iphxiaukbtciatettbj3imuwufiteetqg3ojicprvq",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"text\" : \"The Delta variant, first identified in India, is likely behind the current uptick in cases. The US is now averaging more than 23,000 new Covid-19 cases each day, according to Johns Hopkins University, almost double two weeks ago. The average number of daily cases is rising in 46 states. And we're seeing 261 new Covid-19 deaths each day -- a 21% increase from last week. Again, deaths that are largely preventable.\"\r\n}"
+				},
+				"url": {
+					"raw": "https://language.aiservice.us-ashburn-1.oci.oraclecloud.com/20210101/actions/detectLanguageEntities",
+					"protocol": "https",
+					"host": [
+						"language",
+						"aiservice",
+						"us-ashburn-1",
+						"oci",
+						"oraclecloud",
+						"com"
+					],
+					"path": [
+						"20210101",
+						"actions",
+						"detectLanguageEntities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detect Language Key Phrases",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "compartmentId",
+						"value": "ocid1.tenancy.oc1..aaaaaaaai44wbzfop4iphxiaukbtciatettbj3imuwufiteetqg3ojicprvq",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\" : \"Here are places within cities where summertime heat can soar, and giant swings in temperature are observed over a matter of blocks.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://language.aiservice.us-ashburn-1.oci.oraclecloud.com/20210101/actions/detectLanguageKeyPhrases",
+					"protocol": "https",
+					"host": [
+						"language",
+						"aiservice",
+						"us-ashburn-1",
+						"oci",
+						"oraclecloud",
+						"com"
+					],
+					"path": [
+						"20210101",
+						"actions",
+						"detectLanguageKeyPhrases"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Detect Language Key Phrases",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "compartmentId",
+								"value": "ocid1.tenancy.oc1..aaaaaaaai44wbzfop4iphxiaukbtciatettbj3imuwufiteetqg3ojicprvq",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"text\" : \"Here are places within cities where summertime heat can soar, and giant swings in temperature are observed over a matter of blocks. Neighborhoods with little tree cover, few grassy areas and a lot of concrete can be as much as 15 to 20 degrees hotter than the surrounding areas. During heat waves, these so-called urban heat islands are deadly. Extreme heat is an invisible yet dangerous consequence of human-caused climate change, killing more people each year on average than any other weather-related event, according to the National Weather Service.  — This dash character will cause the call to say it is not authenticated. \"\r\n}"
+						},
+						"url": {
+							"raw": "https://language.aiservice.us-ashburn-1.oci.oraclecloud.com/20210101/actions/detectLanguageKeyPhrases",
+							"protocol": "https",
+							"host": [
+								"language",
+								"aiservice",
+								"us-ashburn-1",
+								"oci",
+								"oraclecloud",
+								"com"
+							],
+							"path": [
+								"20210101",
+								"actions",
+								"detectLanguageKeyPhrases"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jul 2021 18:33:58 GMT"
+						},
+						{
+							"key": "opc-request-id",
+							"value": "/06202963ADF03DAB2A99D0D879BFCEA0/C5B40ABF81E9D316D80505CBAE431957"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "137"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"NotAuthenticated\",\n    \"message\": \"The required information to complete authentication was not provided or was incorrect.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Detect Language Sentiments",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "compartmentId",
+						"value": "ocid1.tenancy.oc1..aaaaaaaai44wbzfop4iphxiaukbtciatettbj3imuwufiteetqg3ojicprvq",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"text\" : \"The Delta variant, first identified in India, is likely behind the current uptick in cases. The US is now averaging more than 23,000 new Covid-19 cases each day, according to Johns Hopkins University, almost double two weeks ago. The average number of daily cases is rising in 46 states. And we're seeing 261 new Covid-19 deaths each day -- a 21% increase from last week. Again, deaths that are largely preventable.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://language.aiservice.us-ashburn-1.oci.oraclecloud.com/20210101/actions/detectLanguageSentiments",
+					"protocol": "https",
+					"host": [
+						"language",
+						"aiservice",
+						"us-ashburn-1",
+						"oci",
+						"oraclecloud",
+						"com"
+					],
+					"path": [
+						"20210101",
+						"actions",
+						"detectLanguageSentiments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detect Language Text Classification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "compartmentId",
+						"value": "ocid1.tenancy.oc1..aaaaaaaai44wbzfop4iphxiaukbtciatettbj3imuwufiteetqg3ojicprvq",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\" : \"The Delta variant, first identified in India, is likely behind the current uptick in cases. The US is now averaging more than 23,000 new Covid-19 cases each day, according to Johns Hopkins University, almost double two weeks ago. The average number of daily cases is rising in 46 states. And we're seeing 261 new Covid-19 deaths each day -- a 21% increase from last week. Again, deaths that are largely preventable.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://language.aiservice.us-ashburn-1.oci.oraclecloud.com/20210101/actions/detectLanguageSentiments",
+					"protocol": "https",
+					"host": [
+						"language",
+						"aiservice",
+						"us-ashburn-1",
+						"oci",
+						"oraclecloud",
+						"com"
+					],
+					"path": [
+						"20210101",
+						"actions",
+						"detectLanguageSentiments"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "f6f7310a-d0de-4786-b705-5e0c6b778b56",
 				"type": "text/javascript",
 				"exec": [
 					"var navigator = {};",
@@ -138,15 +387,18 @@
 					"var methodsThatRequireExtraHeaders = [\"POST\", \"PUT\", \"PATCH\"];",
 					"var body = \"\";",
 					"",
+					"",
 					"if(methodsThatRequireExtraHeaders.indexOf(request.method.toUpperCase()) !== -1) {",
 					"    body = pm.request.body.raw;",
 					"    ",
 					"    //pm.environment.set(\"length\", body.length);",
+					"",
+					"    body = body.replace(/\\n/g, \"\\\\\\\\n\").replace(/\\r/g, \"\\\\\\\\r\").replace(/\\t/g, \"\\\\\\\\t\");",
+					"    body = \"{\" + body.slice(body.search(\"text\")-1, body.lastIndexOf(\"\\\"\")+1) + \"}\";",
+					"    pm.request.body.raw = body;",
 					"    ",
-					"    var content_length_header = \"content-length: \"+ body.length ; ",
+					"    var content_length_header = \"content-length: \" + Buffer.byteLength(body, \"utf8\"); ",
 					"    var content_type_header = \"content-type: application/json\";",
-					"    ",
-					" ",
 					"    ",
 					"    var body_hash = new KJUR.crypto.MessageDigest({\"alg\": \"sha256\", \"prov\": \"cryptojs\"});",
 					"    body_hash.updateString(body);",
@@ -162,24 +414,16 @@
 					"        x_content_sha256_header,",
 					"        content_type_header,",
 					"        content_length_header ",
-					"         ",
 					"        ]);",
 					"",
 					"    headersToSign = headersToSign.concat([",
 					"        \"x-content-sha256\",",
 					"        \"content-type\",",
 					"        \"content-length\"",
-					"        ",
-					"        ",
 					"    ]);",
-					"    ",
 					"}",
 					"",
-					"",
-					"",
 					"var headers=headersToSign.join(\" \"); ",
-					"//console.log(headers);",
-					"",
 					"",
 					"var signing_string =signing_string_array.join(\"\\n\");",
 					"//console.log(signing_string);",
@@ -211,13 +455,11 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "cd0223fc-b9de-4b86-bea1-2fe787fa169b",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
