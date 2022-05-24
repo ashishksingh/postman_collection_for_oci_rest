@@ -13,6 +13,8 @@ Now import the two collections into Postman.
 
 From the OCI_REST_INITIALIZATION collection, invoke the Initializer GET for ‘jsrsasign-all-min.js’ , which imports and initializes a required library jsrsasign for encryption and digital signatures. This is a one-time setup task.
 
+REMEMBER to change the environment (on the top right) from "No Environment" to "OCI_Environment".
+
 That’s it!! Now you can use the other oci_rest_collection to invoke any OCI REST APIs. The collection provides a sample GET and POST request, which can be extrapolated to invoke any OCI REST API.
 
 Just make sure that the OCI REST calls are executed as part of the OCI_REST_COLLECTION, as that collection contains the necessary javascript code to generate OCI’s authentication header
